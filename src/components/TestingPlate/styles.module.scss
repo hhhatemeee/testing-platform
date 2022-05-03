@@ -1,0 +1,42 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 300px;
+  margin-top: calc(100vh*.2);
+}
+
+.plate {
+  width: 100%;
+  align-self: flex-start;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 15px 0;
+  animation: plate .6s;
+  box-shadow: 0px 4px 2px -3px rgba(34, 60, 80, 0.2);
+}
+
+.question {
+  color: rgba(0, 0, 0, .6);
+  margin: 15px 0 15px 25px;
+}
+
+ul {
+  margin: 0 25px 15px 25px;
+  padding: 0;
+}
+
+@keyframes plate {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(-1000px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

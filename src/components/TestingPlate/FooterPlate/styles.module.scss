@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  align-items: center;
+  background-color: #f3f2e7;
+  bottom: 0;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 12px;
+  margin: 0 .8em;
+  height: 50px;
+  width: 100px;
+  font-size: 22px;
+}
+
+.counter {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.current-number {
+  text-align: center;
+  font-size: 25px;
+  background: rgb(255, 255, 255);
+  width: 27px;
+  border-radius: 50%;
+  margin: 0 10px;
+  padding: 5px;
+  font-weight: 700;
+}
+
+.count {
+  font-size: 22px;
+  padding: 0;
+}
+
+.back {
+  font-size: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  border: none;
+  background: none;
+
+  &:hover {
+    color: rgba(#000, .8);
+  }
+
+  &:active {
+    color: rgba(#000, .5);
+  }
+}

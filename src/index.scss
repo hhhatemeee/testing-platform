@@ -1,0 +1,21 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f9f9f9;
+
+  *::-webkit-scrollbar {
+    display: inherit;
+    width: 8px;
+    background-color: #fff;
+    border-radius: 12px;
+
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: rgba(rgba(83, 83, 83, 0.2), .2);
+  }
+}

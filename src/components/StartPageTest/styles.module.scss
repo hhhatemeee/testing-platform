@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto 0;
+  height: 80vh;
+  text-align: center;
+}
+
+.title {
+  position: fixed;
+  top: 40%;
+  margin: 0;
+}
+
+.button {
+  padding: 15px 50px;
+  background-color: #5a3fd4;
+  border: 1px solid rgba(84, 69, 88, 0.534);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 30px;
+  transition: all .1s;
+  cursor: pointer;
+  margin-top: .4em;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #6f52ee;
+  }
+
+  &:active {
+    margin-top: calc(.4em * 1.05);
+    transform: scale(.95);
+    background-color: #4a37a0;
+    font-size: calc(30px*.95);
+  }
+}

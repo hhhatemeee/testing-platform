@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+}
+
+.username {
+  text-align: center;
+}
+
+.test {
+  width: 100%;
+  height: 75px;
+  margin-left: 10px;
+  background-color: #ffa901;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.upload {
+  display: flex;
+  justify-content: space-between;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: #f8b734;
+  width: 75px;
+  height: 75px;
+}
+
+.title-list {
+  margin: 25px 0 10px 10px;
+}
+
+.container-stud {
+  overflow-y: hidden;
+}
+
+.container-stud:hover {
+  overflow-y: auto;
+}
+
+.container-stud:hover li {
+  padding-right: calc(20px*.6)
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lastMark {
+  margin: 0;
+  margin: 25px 10px 10px 0;
+}

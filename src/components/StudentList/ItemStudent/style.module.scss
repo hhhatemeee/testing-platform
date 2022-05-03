@@ -1,0 +1,49 @@
+.container {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  font-size: 18px;
+  margin: 10px 0;
+  width: 18px;
+}
+
+.red {
+  background-color: rgba(243, 92, 54, 0.7);
+}
+
+.green {
+  background-color: rgba(45, 182, 52, 0.534);
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line {
+  padding: 0;
+  margin: 0px auto;
+  height: 0;
+  width: 100%;
+  max-height: 0;
+  font-size: 1px;
+  line-height: 0;
+  clear: both;
+  border: none;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}

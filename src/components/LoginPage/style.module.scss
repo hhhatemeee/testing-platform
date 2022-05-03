@@ -1,0 +1,120 @@
+body {
+  overflow: hidden;
+}
+
+.window {
+  height: 300px;
+  max-width: 350px;
+  min-width: 300px;
+  background-color: rgba(223, 222, 222, 0.13);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(8, 7, 16, 0.3);
+  padding: 50px 35px;
+  animation: form_apper .8s;
+
+  input {
+    display: block;
+    box-sizing: border-box;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(29, 22, 22, 0.1);
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  label {
+    font-weight: 600;
+    margin: 16px 0;
+  }
+}
+
+.login,
+.password {
+  // margin: 0 35px;
+}
+
+.title {
+  margin: 0;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 42px;
+  color: #000;
+}
+
+.circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -10;
+}
+
+.background {
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.background .shape {
+  height: 170px;
+  width: 170px;
+  position: absolute;
+  border-radius: 50%;
+  animation: shape_apper .7s;
+}
+
+.shape:first-child {
+  background: linear-gradient(#1845ad,
+      #23a2f6);
+  left: -40px;
+  top: 0;
+}
+
+.shape:last-child {
+  background: linear-gradient(to right,
+      #ff512f,
+      #f09819);
+  right: 0%;
+  bottom: 0%;
+}
+
+@keyframes shape_apper {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  75% {
+    transform: scale(.7);
+  }
+}
+
+@keyframes form_apper {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+
+  50% {
+    transform: translate(-50%, -75%);
+  }
+
+}

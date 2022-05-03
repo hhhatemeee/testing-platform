@@ -1,0 +1,23 @@
+.button {
+  background-color: #6f52ee;
+  padding: 15px 35px;
+  font-size: 20px;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: .08s all ease-in;
+  text-align: center;
+
+  &:hover {
+    background-color: rgba(#6f52ee, .8);
+  }
+
+  &:active {
+    background-color: rgba(#4e3ba5, 1);
+    transform: scale(.99);
+    font-size: calc(20px*.99);
+    padding: calc(15px*.99) calc(35px*.99);
+  }
+}
