@@ -16,6 +16,10 @@
 
   &:active {
     background-color: rgba(#4e3ba5, 1);
+
+  }
+
+  &.animate:active {
     transform: scale(.99);
     font-size: calc(20px*.99);
     padding: calc(15px*.99) calc(35px*.99);

@@ -1,0 +1,30 @@
+.container {
+  margin: 0 0 15px 0;
+  width: 100%;
+  position: relative;
+}
+
+.add-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-btn {
+  background-color: #6f52ee;
+  margin: 0;
+  padding: 6px;
+  color: #fff;
+  border-radius: 3px;
+  transition: .1s;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background-color: #907de0;
+  }
+
+  &:active {
+    background-color: #644eb9;
+  }
+}

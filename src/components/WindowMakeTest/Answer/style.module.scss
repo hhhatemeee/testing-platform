@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+
+}
+
+.checkbox {
+  opacity: 0;
+  cursor: pointer;
+  transition: all .1s;
+}
+
+.container:hover .checkbox {
+  opacity: 1;
+}

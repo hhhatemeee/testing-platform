@@ -1,6 +1,7 @@
 export interface Ianswer {
   id: string;
   name: string;
+  isTrue: boolean;
 };
 
 export interface IQuestion {
@@ -22,4 +23,14 @@ export interface Istudent {
 export interface IStudentList {
   students: Istudent[];
   className?: string;
+}
+
+export interface ITest {
+  id: string;
+  name: string;
+  questions: IQuestion[]
+}
+
+export interface IStore {
+  tests: ITest[];
 }

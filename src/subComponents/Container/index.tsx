@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 
 interface IContainer {
   children: JSX.Element[] | JSX.Element;
-  className: string;
+  className?: string;
 }
 
 const Container: React.FC<IContainer> = ({ children, className }) => {

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { usePortal } from "../../hooks/usePortal";
 import Container from "../../subComponents/Container";
+import { PortalWindow } from "../PortalWindow";
 import StudentList from "../StudentList";
 import UploadSection from "../UploadSection";
+import WindowMakeTest from "../WindowMakeTest";
+import WindowMakeTestContainer from "../WindowMakeTest/container";
 
 import styles from './style.module.scss';
 
@@ -89,12 +93,18 @@ const MOCK_STUDENTS = [
 ]
 
 const Profile: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleOpen = (boolean: boolean) => {
+    setIsOpen(boolean);
+  }
+
   return <Container>
     <section>
       <h2 className={styles.username}>Александр Бирюлин</h2>
     </section>
     <section className={styles.upload}>
-      <UploadSection />
+      <UploadSection onClick={() => handleOpen(true)} />
       <div className={styles.test}>
         <div className={styles.circle}></div>
       </div>
@@ -104,6 +114,7 @@ const Profile: React.FC = () => {
       <h4 className={styles.lastMark}>Последняя оценка:</h4>
     </span>
     <StudentList students={MOCK_STUDENTS} className={styles['container-stud']} />
+    <PortalWindow isOpen={isOpen} modal={<WindowMakeTestContainer onClose={handleOpen} />} />
   </Container>;
 };
 
