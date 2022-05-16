@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { IStore } from "../../redux";
 import { IQuestion } from "../../types";
 
 import Header from "../Header";
@@ -51,15 +53,25 @@ const MOCK_QUESTIONS: IQuestion[] = [
   },
 ];
 
+
 const App: React.FC = () => {
+  const isAuth:boolean = useSelector((store:IStore) => store.auth.isAuth);
+  
   return <BrowserRouter>
     <Header />
 
     <Routes>
-      <Route path="/" element={<StartPageTest />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/test" element={<TestingPlate questions={MOCK_QUESTIONS} />} />
-      <Route path="/profile" element={<Profile />} />
+      {
+        !isAuth 
+        ? <Route path="/" element={<LoginPage />} />
+        :<> 
+        <Route path="/" element={<StartPageTest />} />
+        <Route path="/test" element={<TestingPlate questions={MOCK_QUESTIONS} />} />
+        <Route path="/profile" element={<Profile />} />
+        </>
+      }
+      
     </Routes>
 
   </BrowserRouter>;

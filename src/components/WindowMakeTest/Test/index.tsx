@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addQuestionActionCreator } from "../../../redux/reducers/tests/actions";
+import { addQuestion } from "../../../redux/reducers/tests";
 import AddValue, { AddingElement } from "../../../subComponents/AddValue";
 import { IQuestion, ITest } from "../../../types";
 import Question from "../Question";
@@ -17,7 +17,7 @@ const Test: React.FC<ITest> = ({ name, id, questions }) => {
   const handleAddingMode = () => setAddingMode(!isAddingMode);
 
   const handleAddQuestion = (value: AddingElement) => {
-    dispatch(addQuestionActionCreator({ testId: id, name: value.name }))
+    dispatch(addQuestion({ testId: id, name: value.name }))
   }
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

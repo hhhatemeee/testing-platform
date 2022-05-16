@@ -1,6 +1,8 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AnyAction } from "redux";
 import { uuid } from "../../../helpers";
 import { IQuestion, ITest } from "../../../types";
+import { IAddAnswerPayload, IAddQuestionPayload, IAddTestPayload } from "../../types";
 import { ADD_ANSWER, ADD_QUESTION, ADD_TEST } from "../../types/actionsTypes";
 
 const initialState: ITest[] = [
@@ -28,57 +30,53 @@ const initialState: ITest[] = [
   }
 ];
 
-
-export default function tests(state = initialState, action: AnyAction) {
-  switch (action.type) {
-    case ADD_TEST:
-      return [
-        ...state,
-        {
-          id: uuid(),
-          questions: [],
-          name: action.payload.name,
+const testsReducer = createSlice({
+  name: 'tests',
+  initialState,
+  reducers: {
+    addTest(state, action: PayloadAction<IAddTestPayload>){
+      const {name} = action.payload;
+      
+      state.push({
+        id:uuid(),
+        questions: [],
+        name
+      });
+    },
+    
+    addQuestion(state, action:PayloadAction<IAddQuestionPayload>){
+      const {name, testId} = action.payload;
+      
+      state.forEach((test:ITest, index) => {
+        if(test.id === testId){
+          state[index].questions.push({
+            id: uuid(),
+            name,
+            answers:[],
+          })
         }
-      ]
-    case ADD_QUESTION:
-      return state.map((test: ITest) => {
-        if (test.id === action.payload.testId) {
-          return {
-            ...test,
-            questions: [...test.questions, {
-              id: uuid(),
-              name: action.payload.name,
-              answers: [],
-            }]
-          }
-        }
-        return test;
       })
-    case ADD_ANSWER:
-      return state.map((test: ITest) => {
-        if (test.id === action.payload.testId) {
-          return {
-            ...test,
-            questions: test.questions.map((ques: IQuestion) => {
-              if (ques.id === action.payload.questionId) {
-                return {
-                  ...ques,
-                  answers: [...ques.answers, {
-                    id: uuid(),
-                    name: action.payload.name,
-                    isTrue: false,
-                  }]
-                }
-              }
-
-              return ques;
-            })
-          }
+    },
+    addAnswer(state, action:PayloadAction<IAddAnswerPayload>){
+      const {name, testId, questionId} = action.payload;
+      
+      state.forEach((test:ITest, iTest) => {
+        if(test.id === testId){
+          state[iTest].questions.forEach((ques:IQuestion,iQues) => {
+            if(ques.id === questionId){
+              state[iTest].questions[iQues].answers.push({
+                id: uuid(),
+                name,
+                isTrue: false,
+              })
+            }
+          })
         }
-
-        return test;
       })
-
+    }
   }
-  return state;
-}
+})
+
+export type testsState = ReturnType<typeof testsReducer.reducer>;
+export default testsReducer.reducer;
+export const {addTest, addQuestion, addAnswer} = testsReducer.actions;

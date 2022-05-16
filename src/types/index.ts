@@ -30,7 +30,9 @@ export interface ITest {
   name: string;
   questions: IQuestion[]
 }
-
-export interface IStore {
-  tests: ITest[];
+export interface IUser {
+  id: number,
+  username: string,
+  firstName: string,
+  lastName: string,
 }

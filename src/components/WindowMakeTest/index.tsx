@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTestActionCreator } from "../../redux/reducers/tests/actions";
+import { addTest } from "../../redux/reducers/tests";
 import AddValue, { AddingElement } from "../../subComponents/AddValue";
 import { ITest } from "../../types";
 
@@ -29,8 +29,8 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, tests }) => {
 
   console.log(tests);
 
-  const addTest = (value: AddingElement) => {
-    dispatch(addTestActionCreator({ ...value }));
+  const handleAddTest = (value: AddingElement) => {
+    dispatch(addTest({ ...value }));
   }
 
   return <div className={styles.container}>
@@ -39,7 +39,7 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, tests }) => {
         <h2 className={styles.title}>Создание теста</h2>
         <h3 className={styles.close} onClick={() => onClose(false)}>+</h3>
       </section>
-      <AddValue placeholder={"Введите название теста"} handleAdd={addTest} heightInput={""} />
+      <AddValue placeholder={"Введите название теста"} handleAdd={handleAddTest} heightInput={""} />
       {
         testList.map((test: ITest) => <Test key={test.id} name={test.name} id={test.id} questions={test.questions} />)
       }
