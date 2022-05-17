@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import withAuth from "../../hoc/withAuth";
 
 import { Ianswer, ITestingPlate } from "../../types";
 import Answer from "./Answer";
@@ -49,4 +50,4 @@ const TestingPlate: React.FC<ITestingPlate> = ({ questions }) => {
   </>;
 };
 
-export default TestingPlate;
+export default withAuth<ITestingPlate>(TestingPlate);

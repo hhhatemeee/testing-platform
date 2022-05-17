@@ -61,17 +61,10 @@ const App: React.FC = () => {
     <Header />
 
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      {
-        !isAuth 
-        ? <Route path="/" element={<LoginPage />} />
-        :<> 
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<StartPageTest />} />
         <Route path="/test" element={<TestingPlate questions={MOCK_QUESTIONS} />} />
         <Route path="/profile" element={<Profile />} />
-        </>
-      }
-      
     </Routes>
 
   </BrowserRouter>;

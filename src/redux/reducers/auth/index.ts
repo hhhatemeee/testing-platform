@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AnyAction } from "redux";
 import { ISetAuthPayload } from "../../types";
 
 const initialState = {
@@ -12,7 +11,6 @@ const authReducer = createSlice({
   initialState,
   reducers:{
     setAuth(state, action: PayloadAction<ISetAuthPayload>){
-      console.log(1111);
       const {isAuth} = action.payload;
       
       state.isAuth = isAuth;

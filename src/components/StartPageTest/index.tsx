@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import withAuth from "../../hoc/withAuth";
 
 import styles from './styles.module.scss';
 
@@ -10,4 +11,4 @@ const StartPageTest: React.FC = () => {
   </section>;
 };
 
-export default StartPageTest;
+export default withAuth(StartPageTest);

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { usePortal } from "../../hooks/usePortal";
+import { useSelector } from "react-redux";
+import withAuth from "../../hoc/withAuth";
+import { IStore } from "../../redux";
 import Container from "../../subComponents/Container";
 import { PortalWindow } from "../PortalWindow";
 import StudentList from "../StudentList";
 import UploadSection from "../UploadSection";
-import WindowMakeTest from "../WindowMakeTest";
 import WindowMakeTestContainer from "../WindowMakeTest/container";
 
 import styles from './style.module.scss';
@@ -94,14 +95,15 @@ const MOCK_STUDENTS = [
 
 const Profile: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
+  const {firstName, lastName, id, username} = useSelector((state:IStore) => state.user);
+  
   const handleOpen = (boolean: boolean) => {
     setIsOpen(boolean);
   }
 
   return <Container>
     <section>
-      <h2 className={styles.username}>Александр Бирюлин</h2>
+      <h2 className={styles.username}>{firstName} {lastName}</h2>
     </section>
     <section className={styles.upload}>
       <UploadSection onClick={() => handleOpen(true)} />
@@ -118,4 +120,4 @@ const Profile: React.FC = () => {
   </Container>;
 };
 
-export default Profile;
+export default withAuth(Profile);
