@@ -7,6 +7,7 @@ import { IQuestion } from "../../types";
 import Header from "../Header";
 import LoginPage from "../LoginPage";
 import Profile from "../Profile";
+import ProfileContainer from "../Profile/container";
 import StartPageTest from "../StartPageTest";
 import TestingPlate from "../TestingPlate";
 
@@ -57,17 +58,17 @@ const MOCK_QUESTIONS: IQuestion[] = [
 const App: React.FC = () => {
   const isAuth:boolean = useSelector((store:IStore) => store.auth.isAuth);
   
-  return <BrowserRouter>
+  return <>
     <Header />
 
     <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<StartPageTest />} />
         <Route path="/test" element={<TestingPlate questions={MOCK_QUESTIONS} />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfileContainer />} />
     </Routes>
 
-  </BrowserRouter>;
+  </>;
 };
 
 export default App;

@@ -3,8 +3,8 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 
 import AuthService from "../../../services/AuthService";
-import { IFetchUser, ILoginPayload } from "../../../services/types";
-import { AuthResponse } from "../../../types/response";
+import {  ILoginPayload } from "../../../services/types";
+import { AuthResponse, IFetchUser } from "../../../types/response";
 import { setAuth } from "../../reducers/auth";
 import UserService from "../../../services/UserService";
 import { setUser } from "../../reducers/user";

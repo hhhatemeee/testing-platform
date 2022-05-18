@@ -3,9 +3,3 @@ export interface ILoginPayload{
   password: string,
 }
 
-export interface IFetchUser {
-  id: number,
-  username: string,
-  firstName: string,
-  lastName: string,
-}

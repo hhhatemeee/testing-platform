@@ -1,4 +1,5 @@
 import { ILoginPayload } from "../../services/types";
+import { ITest } from "../../types";
 
 export interface IAddTestPayload {
   name: string;
@@ -28,3 +29,11 @@ export interface IUserState {
   firstName: string | null,
   lastName: string | null,
 };
+
+export interface IFetchTestPayload {
+  data: ITest[],
+}
+
+export interface IUploadTestPayload{
+  id: number | string, 
+}

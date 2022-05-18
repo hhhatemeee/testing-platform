@@ -10,8 +10,7 @@
   font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -26,10 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-trash:before {
+  content: "\e902";
+}
 .icon-back:before {
   content: "\e900";
 }
-
 .icon-profile:before {
   content: "\e901";
+}
+.icon-trash3:before {
+  content: "\e903";
 }

@@ -1,34 +1,36 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AnyAction } from "redux";
 import { uuid } from "../../../helpers";
-import { IQuestion, ITest } from "../../../types";
-import { IAddAnswerPayload, IAddQuestionPayload, IAddTestPayload } from "../../types";
-import { ADD_ANSWER, ADD_QUESTION, ADD_TEST } from "../../types/actionsTypes";
+import { IQuestion, ITest, ITestState } from "../../../types";
+import { IFetchTest } from "../../../types/response";
+import { IAddAnswerPayload, IAddQuestionPayload, IAddTestPayload, IUploadTestPayload } from "../../types";
 
-const initialState: ITest[] = [
-  {
-    id: '1',
-    name: 'test',
-    questions: [
-      {
-        id: '1',
-        name: 'question',
-        answers: [
-          {
-            id: '1',
-            name: 'answer',
-            isTrue: false,
-          },
-          {
-            id: '2',
-            name: 'answer 2',
-            isTrue: true,
-          }
-        ]
-      }
-    ]
-  }
-];
+const initialState: ITestState = {
+  lastTestIdUpload: null,
+  tests: [
+    {
+      id: 55,
+      name: 'kek',
+      questions: [
+        {
+          id: 1,
+          name: 'question',
+          answers: [
+            {
+              id: 1,
+              name: 'answer',
+              isTrue: false,
+            },
+            {
+              id: 1,
+              name: 'answer 2',
+              isTrue: true,
+            }
+          ]
+        }
+      ]
+    }
+  ],
+};
 
 const testsReducer = createSlice({
   name: 'tests',
@@ -37,8 +39,8 @@ const testsReducer = createSlice({
     addTest(state, action: PayloadAction<IAddTestPayload>){
       const {name} = action.payload;
       
-      state.push({
-        id:uuid(),
+      state.tests.push({
+        id:Date.now(),
         questions: [],
         name
       });
@@ -47,10 +49,10 @@ const testsReducer = createSlice({
     addQuestion(state, action:PayloadAction<IAddQuestionPayload>){
       const {name, testId} = action.payload;
       
-      state.forEach((test:ITest, index) => {
+      state.tests.forEach((test:ITest, index) => {
         if(test.id === testId){
-          state[index].questions.push({
-            id: uuid(),
+          state.tests[index].questions.push({
+            id: Date.now(),
             name,
             answers:[],
           })
@@ -60,12 +62,12 @@ const testsReducer = createSlice({
     addAnswer(state, action:PayloadAction<IAddAnswerPayload>){
       const {name, testId, questionId} = action.payload;
       
-      state.forEach((test:ITest, iTest) => {
+      state.tests.forEach((test:ITest, iTest) => {
         if(test.id === testId){
-          state[iTest].questions.forEach((ques:IQuestion,iQues) => {
+          state.tests[iTest].questions.forEach((ques:IQuestion,iQues) => {
             if(ques.id === questionId){
-              state[iTest].questions[iQues].answers.push({
-                id: uuid(),
+              state.tests[iTest].questions[iQues].answers.push({
+                id: Date.now(),
                 name,
                 isTrue: false,
               })
@@ -73,10 +75,17 @@ const testsReducer = createSlice({
           })
         }
       })
+    },
+    setFetchTests(state, action:PayloadAction<IFetchTest[]>){
+      state.tests = action.payload;
+    },
+    uploadTestInBase(state, action: PayloadAction<IUploadTestPayload>){
+      console.log(123);
+      state.lastTestIdUpload = action.payload.id;
     }
   }
 })
 
 export type testsState = ReturnType<typeof testsReducer.reducer>;
 export default testsReducer.reducer;
-export const {addTest, addQuestion, addAnswer} = testsReducer.actions;
+export const {addTest, addQuestion, addAnswer,setFetchTests,uploadTestInBase} = testsReducer.actions;

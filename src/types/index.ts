@@ -1,11 +1,11 @@
 export interface Ianswer {
-  id: string;
+  id: number;
   name: string;
   isTrue: boolean;
 };
 
 export interface IQuestion {
-  id: string;
+  id: number;
   name: string;
   answers: Ianswer[];
 };
@@ -14,19 +14,19 @@ export interface ITestingPlate {
   questions: IQuestion[];
 };
 
-export interface Istudent {
-  id: string;
+export interface ItemTestProps {
+  id: number;
   name: string;
-  lastMark: number;
+  questions: IQuestion[];
 }
 
-export interface IStudentList {
-  students: Istudent[];
+export interface ITestListProps {
+  tests: ITest[];
   className?: string;
 }
 
 export interface ITest {
-  id: string;
+  id: number;
   name: string;
   questions: IQuestion[]
 }
@@ -35,4 +35,9 @@ export interface IUser {
   username: string,
   firstName: string,
   lastName: string,
+}
+
+export interface ITestState{
+  lastTestIdUpload: number | null,
+  tests: ITest[],
 }

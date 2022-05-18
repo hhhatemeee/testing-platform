@@ -7,32 +7,15 @@
   padding: 0 20px;
 }
 
-.mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  color: #fff;
-  text-align: center;
-  padding: 5px;
-  font-size: 18px;
-  margin: 10px 0;
-  width: 18px;
-}
-
-.red {
-  background-color: rgba(243, 92, 54, 0.7);
-}
-
-.green {
-  background-color: rgba(45, 182, 52, 0.534);
-}
-
 .row {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  &:hover{
+    
+  }
 }
 
 .line {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addQuestion } from "../../../redux/reducers/tests";
+import { addQuestion, uploadTestInBase } from "../../../redux/reducers/tests";
+import { uploadTestInServer } from "../../../redux/sagas/tests";
 import AddValue, { AddingElement } from "../../../subComponents/AddValue";
 import { IQuestion, ITest } from "../../../types";
 import Question from "../Question";
@@ -25,11 +26,16 @@ const Test: React.FC<ITest> = ({ name, id, questions }) => {
       setAddingMode(false);
     }
   }
+  
+  const onUpload = ():void => {
+    dispatch(uploadTestInBase({id}));
+  }
 
   return <section className={styles.container}>
     <div className={styles.header}>
       <h4 className={styles.name}>{name}</h4>
       <h3 className={styles['add-btn']} onClick={handleIsShow}>{isShow ? 'Скрыть вопросы' : 'Открыть вопросы'}</h3>
+      <button onClick={onUpload}>загрузка</button>
     </div>
     {
       isShow && <>
