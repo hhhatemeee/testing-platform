@@ -1,20 +1,19 @@
 import { ILoginPayload } from "../../services/types";
-import { ITest } from "../../types";
+import { IQuestion, ITest } from "../../types";
 
 export interface IAddTestPayload {
   name: string;
 };
 
 export interface IAddQuestionPayload {
-  name: string;
-  testId: string;
+  question: IQuestion;
 };
 
 
 export interface IAddAnswerPayload {
   name: string;
-  testId: string;
-  questionId: string;
+  testId: number;
+  questionId: number;
 };
 
 export interface ISetAuthPayload{
@@ -35,5 +34,6 @@ export interface IFetchTestPayload {
 }
 
 export interface IUploadTestPayload{
-  id: number | string, 
+  id: number,
+  test: ITest, 
 }

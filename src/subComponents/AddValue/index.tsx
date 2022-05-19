@@ -12,13 +12,14 @@ interface IAddValue {
   heightInput: string;
   isAdding?: boolean;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  children?: JSX.Element;
 }
 
 export interface AddingElement {
   name: string;
 }
 
-const AddValue: React.FC<IAddValue> = ({ placeholder, handleAdd, heightInput, isAdding, onKeyDown }) => {
+const AddValue: React.FC<IAddValue> = ({ placeholder, handleAdd, heightInput, isAdding, onKeyDown,children }) => {
   const [value, setValue] = useState<string>('');
 
   const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +42,9 @@ const AddValue: React.FC<IAddValue> = ({ placeholder, handleAdd, heightInput, is
       {
         isAdding
           ? <h4 className={styles['add-btn']} onClick={onAdd}>+</h4>
-          : <Button text="Add" onClick={onAdd} />
+          : <Button text="Ок" onClick={onAdd} />
       }
+      {children}
     </div>
   </section >;
 };

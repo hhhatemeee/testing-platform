@@ -8,9 +8,9 @@ interface IWindowMakeTestContainer {
 }
 
 const WindowMakeTestContainer: React.FC<IWindowMakeTestContainer> = ({ onClose }) => {
-  const tests = useSelector((store: IStore) => store.tests.tests);
+  const test = useSelector((store: IStore) => store.localTest);
 
-  return <WindowMakeTest onClose={onClose} tests={tests} />;
+  return <WindowMakeTest onClose={onClose} test={test} />;
 };
 
 export default WindowMakeTestContainer;

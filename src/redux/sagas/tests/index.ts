@@ -17,15 +17,15 @@ function* loadTestData(){
 }
 
 function* uploadTest({payload}: PayloadAction<IUploadTestPayload>){
-  const state:ITestState = yield select((state: IStore) => state.tests);
-  const {id} = payload;
-  console.log(id);
+  // const state:ITestState = yield select((state: IStore) => state.tests);
+  const {test} = payload;
+  console.log(test);
   // if(state.lastTestIdUpload === id){
   //   return;
   // }
   
-  const test:ITest = state.tests.filter((test:ITest) => test.id === id)[0];
-  console.log(test);
+  // const test:ITest = state.tests.filter((test:ITest) => test.id === id)[0];
+  // console.log(test);
   
   yield call(
     {context: TestsService, fn: TestsService.uploadTest},

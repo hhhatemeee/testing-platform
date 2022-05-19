@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(214, 214, 214);
+  // background-color: rgb(214, 214, 214);
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
@@ -8,18 +8,19 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  justify-content: center;
+  padding: 5px 0;
+  // margin-bottom: 15px;
 }
 
 .name {
-  margin: 0;
+  margin: 0 0 15px 0;
   padding: 0;
   font-size: 20px;
-  width: 70%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  text-align: center;
 }
 
 .add-btn {
@@ -43,18 +44,8 @@
 }
 
 .add-question {
-  margin: 0 0 15px 0;
-  text-align: center;
-  cursor: pointer;
-  animation: appearance .2s;
-
-  &:hover {
-    color: rgba(#000, .8);
-  }
-
-  &:active {
-    color: rgba(#000, .5);
-  }
+  display: flex;
+  align-items: center;
 }
 
 @keyframes appearance {

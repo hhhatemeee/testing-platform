@@ -1,36 +1,43 @@
+import { Upload } from "@mui/icons-material";
+import {IconButton} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTest } from "../../redux/reducers/tests";
+import { addNameTest } from "../../redux/reducers/localTest";
+import { uploadTestInBase } from "../../redux/reducers/tests";
 import AddValue, { AddingElement } from "../../subComponents/AddValue";
 import { ITest } from "../../types";
 
 import styles from './style.module.scss';
-import Test from "./Test";
+import TestContainer from "./Test/container";
 
 interface IWindowMakeTest {
   onClose: (boolean: boolean) => void;
-  tests: ITest[];
+  test: ITest;
 }
 
 export interface IQuestion {
-  id: string;
+  id: number;
   name: string;
 }
 
-const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, tests }) => {
-  const [testList, setTestList] = useState<ITest[]>([]);
+const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, test }) => {
+  const [localTest, setLocalTest] = useState<ITest>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (tests) {
-      setTestList(tests);
+    if (test) {
+      setLocalTest(test);
     }
-  }, [tests]);
+  }, [test]);
 
-  console.log(tests);
-
-  const handleAddTest = (value: AddingElement) => {
-    dispatch(addTest({ ...value }));
+  const handleAddTest = (value: AddingElement):void => {
+    dispatch(addNameTest({ ...value }));
+  };
+  
+  const uploadTestHandler = ():void => {
+    if(localTest){
+      dispatch(uploadTestInBase({id: localTest.id, test:localTest}));
+    }
   }
 
   return <div className={styles.container}>
@@ -39,10 +46,12 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, tests }) => {
         <h2 className={styles.title}>Создание теста</h2>
         <h3 className={styles.close} onClick={() => onClose(false)}>+</h3>
       </section>
-      <AddValue placeholder={"Введите название теста"} handleAdd={handleAddTest} heightInput={""} />
-      {
-        testList.map((test: ITest) => <Test key={test.id} name={test.name} id={test.id} questions={test.questions} />)
-      }
+      <AddValue placeholder={"Введите название для теста"} handleAdd={handleAddTest} heightInput={""} >
+        <IconButton sx={{marginLeft:'5px'}} onClick={uploadTestHandler}>
+          <Upload className={styles.upload} />
+        </IconButton>
+        </AddValue>
+      {localTest && <TestContainer id={localTest.id} name={localTest.name} questionsTest={localTest.questions} />}
     </main>
   </div>;
 };

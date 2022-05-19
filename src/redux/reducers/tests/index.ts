@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { uuid } from "../../../helpers";
 import { IQuestion, ITest, ITestState } from "../../../types";
 import { IFetchTest } from "../../../types/response";
 import { IAddAnswerPayload, IAddQuestionPayload, IAddTestPayload, IUploadTestPayload } from "../../types";

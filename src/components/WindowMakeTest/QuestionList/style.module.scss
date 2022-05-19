@@ -1,0 +1,31 @@
+.questions {
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  
+  &__item{
+    display: flex;
+    
+    margin: 5px 0;
+    padding: 10px;
+    
+    background-color: #4b2beb1f;
+    border-radius: 3px;
+    
+    overflow-x: hidden;
+    
+    transition: .2s;
+    animation: appearance .2s;
+    
+    &:hover{
+      background-color: #5d3ef538;
+    }
+  }
+  
+
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+}

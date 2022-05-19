@@ -1,66 +1,91 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addQuestion, uploadTestInBase } from "../../../redux/reducers/tests";
-import { uploadTestInServer } from "../../../redux/sagas/tests";
-import AddValue, { AddingElement } from "../../../subComponents/AddValue";
-import { IQuestion, ITest } from "../../../types";
-import Question from "../Question";
+import { Select, MenuItem, SelectChangeEvent, IconButton } from "@mui/material";
+import { AddCircle } from "@mui/icons-material";
+
+import { uploadTestInBase } from "../../../redux/reducers/tests";
+import { AddingElement } from "../../../subComponents/AddValue";
+import { IQuestion } from "../../../types";
 
 import styles from './style.module.scss';
+import { addQuestion } from "../../../redux/reducers/localTest";
+import QuestionList from "../QuestionList";
+import Button from "../../../subComponents/Button";
 
-const Test: React.FC<ITest> = ({ name, id, questions }) => {
-  const [isShow, setIsShow] = useState<boolean>(false);
-  const [isAddingMode, setAddingMode] = useState<boolean>(false);
+
+export interface ITestProps {
+  id: number,
+  name: string,
+  questionsTest: IQuestion[],
+  questionsAll?: IQuestion[],
+}
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const Test: React.FC<ITestProps> = ({ name, id, questionsTest, questionsAll }) => {
+  const [questions, setQuestions] = useState<IQuestion[]>([]);
+  const [currentValue, setCurrentValue] = useState<number | 'question'>('question');
   const dispatch = useDispatch();
 
-  const handleIsShow = () => setIsShow(!isShow);
-
-  const handleAddingMode = () => setAddingMode(!isAddingMode);
-
-  const handleAddQuestion = (value: AddingElement) => {
-    dispatch(addQuestion({ testId: id, name: value.name }))
-  }
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Escape') {
-      setAddingMode(false);
+  useEffect(() => {
+    if (questionsAll) {
+      setQuestions(questionsAll);
     }
+  }, [questionsAll]);
+
+  const selectChangeHandler = (e: SelectChangeEvent<number | 'question'>): void => {
+    setCurrentValue(e.target.value);
   }
-  
-  const onUpload = ():void => {
-    dispatch(uploadTestInBase({id}));
+
+  const addQuestionHandler = () => {
+    const question = questions.filter((q: IQuestion) => q.id === currentValue)[0];
+    
+    dispatch(addQuestion({ question }));
+    setCurrentValue('question');
   }
 
   return <section className={styles.container}>
-    <div className={styles.header}>
-      <h4 className={styles.name}>{name}</h4>
-      <h3 className={styles['add-btn']} onClick={handleIsShow}>{isShow ? 'Скрыть вопросы' : 'Открыть вопросы'}</h3>
-      <button onClick={onUpload}>загрузка</button>
-    </div>
+    <h4 className={styles.name}>{name}</h4>
+    {questions
+      && <section className={styles['add-question']}>
+        <Select
+          onChange={selectChangeHandler}
+          labelId="label-select"
+          value={currentValue}
+          autoWidth={false}
+          size="medium"
+          sx={{ width: '530px', minWidth: '530px' }}
+          MenuProps={MenuProps}
+        >
+          <MenuItem value="question" disabled>
+            Добавить вопрос
+          </MenuItem>
+          {questions.map((q: IQuestion) => (
+            <MenuItem
+              key={q.id}
+              value={q.id}
+            >
+              {q.name}
+            </MenuItem>
+          )
+          )}
+        </Select>
+        <IconButton sx={{ color: '#6f52ee' }} onClick={addQuestionHandler}>
+          <AddCircle sx={{ fontSize: '40px' }} />
+        </IconButton>
+      </section>
+    }
     {
-      isShow && <>
-        <ul className={styles['question-list']}>
-          {questions.map((ques: IQuestion, index) => <Question
-            position={index}
-            key={ques.id}
-            name={ques.name}
-            id={ques.id}
-            answers={ques.answers}
-            testId={id}
-          />)}
-        </ul>
-        {
-          isAddingMode
-            ? <AddValue
-              heightInput="30px"
-              handleAdd={handleAddQuestion}
-              placeholder='Введите название вопроса'
-              isAdding={true}
-              onKeyDown={onKeyDown}
-            />
-            : <p className={styles['add-question']} onClick={handleAddingMode}>Добавить вопрос</p>
-        }
-      </>
+      questionsTest?.length && <QuestionList questions={questionsTest} />
     }
   </section>;
 };

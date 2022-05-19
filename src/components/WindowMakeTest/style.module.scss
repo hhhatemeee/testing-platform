@@ -11,6 +11,8 @@
 }
 
 .window {
+  position: relative;
+  
   width: 600px;
   height: 600px;
   background-color: white;
@@ -43,6 +45,10 @@
   &:active {
     color: rgba(#000000, .5)
   }
+}
+
+.upload{
+  color:#6f52ee;
 }
 
 @keyframes appearance {
