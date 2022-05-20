@@ -1,73 +1,66 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { IStore } from "../../redux";
-import { IQuestion } from "../../types";
+import {  Route, Routes } from "react-router-dom";
 
 import Header from "../Header";
-import LoginPage from "../LoginPage";
-import Profile from "../Profile";
-import ProfileContainer from "../Profile/container";
-import StartPageTest from "../StartPageTest";
-import TestingPlate from "../TestingPlate";
+import LoginPage from "../../pages/LoginPage";
+import ProfileContainer from "../../pages/Profile/container";
+import StartPageTest from "../../pages/StartPageTest";
+import TestingPlate from "../../pages/TestingPlate";
+import { QuestionNoAccess } from "../../shared/types";
 
-const MOCK_QUESTIONS: IQuestion[] = [
+const MOCK_QUESTIONS: QuestionNoAccess[] = [
   {
-    id: '1',
+    id: 1,
     name: 'Что такое программирование?',
     answers: [
-      { id: '1', name: 'Наука' },
-      { id: '2', name: 'Кино' },
-      { id: '3', name: 'Книга' },
-      { id: '4', name: 'Жизнь' },
+      { id: 1, name: 'Наука' },
+      { id: 2, name: 'Кино' },
+      { id: 3, name: 'Книга' },
+      { id: 4, name: 'Жизнь' },
     ]
   },
   {
-    id: '2',
+    id: 2,
     name: 'Что такое программирование?',
     answers: [
-      { id: '1', name: 'Наука' },
-      { id: '2', name: 'Кино' },
-      { id: '3', name: 'Книга' },
-      { id: '4', name: 'Жизнь' },
+      { id: 1, name: 'Наука' },
+      { id: 2, name: 'Кино' },
+      { id: 3, name: 'Книга' },
+      { id: 4, name: 'Жизнь' },
     ]
   },
   {
-    id: '3',
+    id: 3,
     name: 'Что такое программирование?',
     answers: [
-      { id: '1', name: 'Наука' },
-      { id: '2', name: 'Кино' },
-      { id: '3', name: 'Книга' },
-      { id: '4', name: 'Жизнь' },
+      { id: 1, name: 'Наука' },
+      { id: 2, name: 'Кино' },
+      { id: 3, name: 'Книга' },
+      { id: 4, name: 'Жизнь' },
     ]
   },
   {
-    id: '4',
+    id: 4,
     name: 'Что такое программирование?',
     answers: [
-      { id: '1', name: 'Наука' },
-      { id: '2', name: 'Кино' },
-      { id: '3', name: 'Книга' },
-      { id: '4', name: 'Жизнь' },
+      { id: 1, name: 'Наука' },
+      { id: 2, name: 'Кино' },
+      { id: 3, name: 'Книга' },
+      { id: 4, name: 'Жизнь' },
     ]
   },
 ];
 
 
 const App: React.FC = () => {
-  const isAuth:boolean = useSelector((store:IStore) => store.auth.isAuth);
-  
   return <>
     <Header />
-
     <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<StartPageTest />} />
         <Route path="/test" element={<TestingPlate questions={MOCK_QUESTIONS} />} />
         <Route path="/profile" element={<ProfileContainer />} />
     </Routes>
-
   </>;
 };
 

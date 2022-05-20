@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
+
 import withAuth from "../../hoc/withAuth";
 import Container from "../../subComponents/Container";
 import { ITest } from "../../types";
-import { PortalWindow } from "../PortalWindow";
-import TestList from "../TestList";
-import UploadSection from "../UploadSection";
-import WindowMakeTestContainer from "../WindowMakeTest/container";
+import { PortalWindow } from "../../components/PortalWindow";
+import TestList from "../../components/TestList";
+import UploadSection from "../../components/UploadSection";
+import WindowMakeTestContainer from "../../components/WindowMakeTest/container";
+import { UserReducerState } from "../../shared/types";
 
 import styles from './style.module.scss';
 
-interface IProfileProps {
-  tests: ITest[],
-  id: number | null,
-  firstName: string | null,
-  lastName: string | null,
-  username: string | null,
-}
+type ProfileProps = {
+  tests: ITest[]
+} & UserReducerState;
 
-const Profile: React.FC<IProfileProps> = ({
+const Profile: React.FC<ProfileProps> = ({
   tests,
   id,
   firstName,

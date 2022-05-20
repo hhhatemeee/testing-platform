@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Logo from '../../assets/img/ksu-logo.svg';
-
 import styles from './styles.module.scss';
 
 const Header: React.FC = () => {

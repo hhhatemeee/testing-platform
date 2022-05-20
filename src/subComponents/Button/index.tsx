@@ -2,14 +2,14 @@ import React from "react";
 
 import styles from './styles.module.scss';
 
-interface IButton {
+type ButtonProps = {
   onClick: () => void;
   text: string;
   width?: string;
   isAnimate?: boolean;
 }
 
-const Button: React.FC<IButton> = ({ onClick, text, width, isAnimate }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, text, width, isAnimate }) => {
   return <button
     className={`${styles.button} ${isAnimate ? styles.animate : ''}`}
     onClick={onClick}

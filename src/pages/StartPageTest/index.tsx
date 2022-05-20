@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import withAuth from "../../hoc/withAuth";
 
 import styles from './styles.module.scss';

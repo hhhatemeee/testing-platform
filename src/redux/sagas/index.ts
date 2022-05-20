@@ -1,8 +1,9 @@
-import { all, call, spawn } from "redux-saga/effects";
+import { all, call, spawn, StrictEffect } from "redux-saga/effects";
+
 import loginSaga from "./auth";
 import pageLoaderSaga, { uploadTestInServer } from "./tests";
 
-export default function* rootSaga(){
+export default function* rootSaga():Generator<StrictEffect>{
   const sagas = [loginSaga, pageLoaderSaga,uploadTestInServer];
   
   const retrySagas = sagas.map((saga) => {

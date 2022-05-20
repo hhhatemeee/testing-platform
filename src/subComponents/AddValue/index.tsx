@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 
-import { uuid } from "../../helpers";
+import { AddingElementProps } from "../../shared/types";
 import Button from "../Button";
 import Input from "../Input";
 
 import styles from './style.module.scss';
 
-interface IAddValue {
+type AddValueProps = {
   placeholder: string;
-  handleAdd: (object: AddingElement) => void;
+  handleAdd: (object: AddingElementProps) => void;
   heightInput: string;
   isAdding?: boolean;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   children?: JSX.Element;
 }
 
-export interface AddingElement {
-  name: string;
-}
 
-const AddValue: React.FC<IAddValue> = ({ placeholder, handleAdd, heightInput, isAdding, onKeyDown,children }) => {
+const AddValue: React.FC<AddValueProps> = ({
+  placeholder,
+  handleAdd,
+  heightInput,
+  isAdding,
+  onKeyDown,
+  children
+}) => {
   const [value, setValue] = useState<string>('');
 
   const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,13 +1,14 @@
-import { combineReducers, configureStore, Reducer } from "@reduxjs/toolkit";
-import tests, { testsState } from "./reducers/tests";
-import auth, { authState } from "./reducers/auth";
-import user, { userState } from "./reducers/user";
-import rootSaga from "./sagas";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import { createReduxHistoryContext, RouterState } from "redux-first-history";
+import { createReduxHistoryContext } from "redux-first-history";
 import { createBrowserHistory } from "history";
-import localTest, { localTestState } from "./reducers/localTest";
-import questions, { questionsState } from "./reducers/questions";
+
+import tests from "./reducers/tests";
+import auth from "./reducers/auth";
+import user from "./reducers/user";
+import rootSaga from "./sagas";
+import localTest from "./reducers/localTest";
+import questions from "./reducers/questions";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,31 +18,23 @@ const {
   routerReducer,
 } = createReduxHistoryContext({history: createBrowserHistory()})
 
-export interface IStore {
-  router: Reducer<RouterState>,
-  tests: testsState,
-  auth: authState,
-  user: userState,
-  localTest: localTestState,
-  questions: questionsState,
-};
-
-
-const store = configureStore({
-  reducer: combineReducers({
-    router: routerReducer,
+const rootReducer = combineReducers({
+  router: routerReducer,
     tests,
     auth,
     user,
     localTest,
     questions,
-  }),
+});
+
+const store = configureStore({
+  reducer: rootReducer,
   middleware: [sagaMiddleware,routerMiddleware],
   devTools: window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__,
 });
 
-export const history = createReduxHistory(store);
-
 sagaMiddleware.run(rootSaga);
 
+export const history = createReduxHistory(store);
+export type State = ReturnType<typeof rootReducer>;
 export default store;

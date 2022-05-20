@@ -3,21 +3,18 @@ import { useDispatch } from "react-redux";
 import { Select, MenuItem, SelectChangeEvent, IconButton } from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
 
-import { uploadTestInBase } from "../../../redux/reducers/tests";
-import { AddingElement } from "../../../subComponents/AddValue";
-import { IQuestion } from "../../../types";
-
-import styles from './style.module.scss';
 import { addQuestion } from "../../../redux/reducers/localTest";
 import QuestionList from "../QuestionList";
-import Button from "../../../subComponents/Button";
+
+import styles from './style.module.scss';
+import { Question } from "../../../shared/types";
 
 
-export interface ITestProps {
+export type TestProps = {
   id: number,
   name: string,
-  questionsTest: IQuestion[],
-  questionsAll?: IQuestion[],
+  questionsTest: Question[],
+  questionsAll?: Question[],
 }
 
 const ITEM_HEIGHT = 48;
@@ -31,8 +28,8 @@ const MenuProps = {
   },
 };
 
-const Test: React.FC<ITestProps> = ({ name, id, questionsTest, questionsAll }) => {
-  const [questions, setQuestions] = useState<IQuestion[]>([]);
+const Test: React.FC<TestProps> = ({ name, id, questionsTest, questionsAll }) => {
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [currentValue, setCurrentValue] = useState<number | 'question'>('question');
   const dispatch = useDispatch();
 
@@ -47,7 +44,7 @@ const Test: React.FC<ITestProps> = ({ name, id, questionsTest, questionsAll }) =
   }
 
   const addQuestionHandler = () => {
-    const question = questions.filter((q: IQuestion) => q.id === currentValue)[0];
+    const question = questions.filter((q: Question) => q.id === currentValue)[0];
     
     dispatch(addQuestion({ question }));
     setCurrentValue('question');
@@ -69,7 +66,7 @@ const Test: React.FC<ITestProps> = ({ name, id, questionsTest, questionsAll }) =
           <MenuItem value="question" disabled>
             Добавить вопрос
           </MenuItem>
-          {questions.map((q: IQuestion) => (
+          {questions.map((q: Question) => (
             <MenuItem
               key={q.id}
               value={q.id}

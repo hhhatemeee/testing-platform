@@ -1,25 +1,23 @@
 import { forwardRef, useState, useImperativeHandle, ReactElement, JSXElementConstructor } from "react";
-
 import ReactDOM from "react-dom";
-import { uuid } from "../../helpers";
+
 import { usePortal } from "../../hooks/usePortal";
 
-interface IPortalHandle {
+type PortalHandleProps = {
   addWindow: (window: JSX.Element) => void;
 };
 
-interface IPortal {
+type PortalProps = {
   isOpen: boolean;
   modal: JSX.Element;
 };
 
-export const PortalWindow = forwardRef<IPortalHandle, IPortal>((
+export const PortalWindow = forwardRef<PortalHandleProps, PortalProps>((
   {
     isOpen,
     modal,
-  }: IPortal, ref): ReactElement<any, string | JSXElementConstructor<any>> | null => {
+  }: PortalProps, ref): ReactElement<any, string | JSXElementConstructor<any>> | null => {
   const [window, setWindow] = useState<JSX.Element>(modal);
-  console.log(isOpen);
   const { loaded, portalId } = usePortal();
 
   useImperativeHandle(ref, () => ({

@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import WindowMakeTest from ".";
-import { IStore } from "../../redux";
 
-interface IWindowMakeTestContainer {
+import WindowMakeTest from ".";
+import { State } from "../../redux";
+
+type WindowMakeTestContainerProps  = {
   onClose: (boolean: boolean) => void;
 }
 
-const WindowMakeTestContainer: React.FC<IWindowMakeTestContainer> = ({ onClose }) => {
-  const test = useSelector((store: IStore) => store.localTest);
+const WindowMakeTestContainer: React.FC<WindowMakeTestContainerProps> = ({ onClose }) => {
+  const test = useSelector((store: State) => store.localTest);
 
   return <WindowMakeTest onClose={onClose} test={test} />;
 };

@@ -1,15 +1,14 @@
 import { AxiosResponse } from "axios";
 
 import api from "../api";
-import { ITest } from "../types";
-import { IFetchTest } from "../types/response";
+import { IFetchTest, Test } from "../shared/types";
 
 export default class TestsService{
   static fetchTests():Promise<AxiosResponse<IFetchTest[]>>{
     return api.get<IFetchTest[]>('/variant/variants');
   }
   
-  static uploadTest(test: ITest):Promise<AxiosResponse<IFetchTest>>{
-    return api.post<IFetchTest>('/variant/upload',{...test});
+  static uploadTest(test: Test):Promise<AxiosResponse<Test>>{
+    return api.post<Test>('/variant/upload',{...test});
   }
 }

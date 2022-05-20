@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserReducerState } from "../../../shared/types";
 import { IUser } from "../../../types";
-import { IUserState } from "../../types";
 
-const initialState: IUserState ={
+const initialState: UserReducerState ={
   id: null,
   username: null,
   lastName: null,

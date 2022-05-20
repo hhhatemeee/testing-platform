@@ -1,11 +1,12 @@
 import React from "react";
-import cn from 'classnames';
 
-import { ItemTestProps } from "../../../types";
+import { SharedEntity } from "../../../shared/types";
 
 import styles from './style.module.scss';
 
-const TestItem: React.FC<ItemTestProps> = ({ id, name, questions }) => {
+type TestItemProps = {} & SharedEntity;
+
+const TestItem: React.FC<TestItemProps> = ({ id, name }) => {
   return <li className={styles.container}>
     <div className={styles.row}>
       <p>{name}</p>

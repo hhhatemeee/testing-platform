@@ -1,18 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addAnswer } from "../../../redux/reducers/tests";
-import AddValue, { AddingElement } from "../../../subComponents/AddValue";
-import { Ianswer } from "../../../types";
-import Answer from "../Answer";
+import React from "react";
 
 import styles from './style.module.scss';
-
-interface IQuestionProps {
+type QuestionProps = {
   name: string;
   id: number;
 }
 
-const Question: React.FC<IQuestionProps> = ({ name, id }) => {
+const Question: React.FC<QuestionProps> = ({ name, id }) => {
   return <li className={styles['questions__item']}>
     {name}
   </li>;

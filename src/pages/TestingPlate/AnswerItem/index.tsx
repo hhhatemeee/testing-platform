@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Ianswer } from "../../../types";
+
+import { AnswerNoAccess } from "../../../shared/types";
 
 import styles from './styles.module.scss';
 
-const Answer: React.FC<Ianswer> = ({ id, name }) => {
+const AnswerItem: React.FC<AnswerNoAccess> = ({ id, name }) => {
   const [isChecked, setChecked] = useState<boolean>(false);
 
   const onChangeChecked = () => setChecked(!isChecked);
@@ -15,4 +16,4 @@ const Answer: React.FC<Ianswer> = ({ id, name }) => {
   </li>
 };
 
-export default Answer;
+export default AnswerItem;

@@ -1,21 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Ianswer, IQuestion, ITest } from "../../../types";
-import { IAddAnswerPayload, IAddTestPayload } from "../../types";
+import { AddQuestionPayload, AddTestPayload, Test } from "../../../shared/types";
 
-
-type IAddQuestionPayload = {
-  question:IQuestion
-}
-const initialState:ITest = {
-  id: Date.now(),
+const initialState:Test = {
+  id: 1,
   name: 'Новый тест',
   questions: [
     {
-      id: Date.now(),
+      id:1,
       name: 'Первый вопрос',
       answers:[
         {
-          id:Date.now(),
+          id:1,
           name: '',
           isTrue: false,
         }
@@ -28,12 +23,12 @@ const localTestSlice = createSlice({
   name: 'localTest',
   initialState,
   reducers:{
-    addNameTest(state, action: PayloadAction<IAddTestPayload>){
+    addNameTest(state, action: PayloadAction<AddTestPayload>){
       const {name} = action.payload;
       
       state.name = name;
     },
-    addQuestion(state, action: PayloadAction<IAddQuestionPayload>){
+    addQuestion(state, action: PayloadAction<AddQuestionPayload>){
       const {question} = action.payload;
       
       state.questions.push(question);

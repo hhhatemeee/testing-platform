@@ -1,20 +1,16 @@
 import { AxiosResponse } from "axios";
+
 import api from "../api";
-import { AuthResponse } from "../types/response";
-import { ILoginPayload } from "./types";
+import { LoginPayload, AuthResponse, RegistrationPayload } from "../shared/types";
 
 export default class AuthService {
-  static async login({username, password}: ILoginPayload):Promise<AxiosResponse<AuthResponse>> {
-    return api.post<AuthResponse>('/auth/login', {username, password})
+  static async login({ username, password }: LoginPayload): Promise<AxiosResponse<AuthResponse>> {
+    return api.post<AuthResponse>('/auth/login', { username, password })
   }
-  
-  static async registration(
-    username: string,
-    firstName: string,
-    lastName: string,
-    password: string,
-    confirmPassword: string,
-    ):Promise<AxiosResponse<AuthResponse>> {
-    return api.post<AuthResponse>('/auth/registration', {username, firstName,lastName, password, confirmPassword})
+
+  static async registration(payload: RegistrationPayload): Promise<AxiosResponse<AuthResponse>> {
+    const { username, firstName, lastName, password, confirmPassword } = payload;
+    
+    return api.post<AuthResponse>('/auth/registration', { username, firstName, lastName, password, confirmPassword });
   }
 }

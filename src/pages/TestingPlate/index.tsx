@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import withAuth from "../../hoc/withAuth";
+import {  AnswerNoAccess, QuestionNoAccess } from "../../shared/types";
 
-import { Ianswer, ITestingPlate } from "../../types";
-import Answer from "./Answer";
+import AnswerItem from "./AnswerItem";
 import FooterPlate from "./FooterPlate";
 
 import styles from './styles.module.scss';
 
-const TestingPlate: React.FC<ITestingPlate> = ({ questions }) => {
+type TestingPlateProps = {
+  questions: QuestionNoAccess[];
+};
+
+const TestingPlate: React.FC<TestingPlateProps> = ({ questions }) => {
   const [currentNumber, setCurrentNumber] = useState<number>(1);
 
   const handleCurrentNumber = () => {
@@ -36,7 +40,9 @@ const TestingPlate: React.FC<ITestingPlate> = ({ questions }) => {
         </h3>
         <ul>
           {
-            questions[currentNumber - 1].answers.map((answer: Ianswer) => <Answer key={answer.id} name={answer.name} id={answer.id} />)
+            questions[currentNumber - 1].answers.map((answer: AnswerNoAccess) => (
+              <AnswerItem key={answer.id} name={answer.name} id={answer.id} />
+            ))
           }
         </ul>
       </div>
@@ -50,4 +56,4 @@ const TestingPlate: React.FC<ITestingPlate> = ({ questions }) => {
   </>;
 };
 
-export default withAuth<ITestingPlate>(TestingPlate);
+export default withAuth<TestingPlateProps>(TestingPlate);

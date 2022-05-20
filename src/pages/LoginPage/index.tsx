@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { IStore } from "../../redux";
-import { setAuth } from "../../redux/reducers/auth";
 
+import { State } from "../../redux";
+import { setAuth } from "../../redux/reducers/auth";
 import Button from "../../subComponents/Button";
 
 import styles from './style.module.scss';
@@ -11,7 +11,7 @@ import styles from './style.module.scss';
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const isAuth:boolean = useSelector((store:IStore) => store.auth.isAuth);
+  const isAuth:boolean = useSelector((store:State) => store.auth.isAuth);
   const navigate = useNavigate();
   
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import Button from "../../../subComponents/Button";
 
 import styles from './styles.module.scss';
 
-interface IFooterPlate {
+type IFooterPlate = {
   count: number;
   onClick: () => void;
   currentNumber: number;

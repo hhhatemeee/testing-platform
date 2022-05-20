@@ -1,17 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IQuestion, ITest } from "../../../types";
+import { AddAnswerPayload, AddNameQuestionPayload, Question } from "../../../shared/types";
 
-type IAddQuestionPayload ={
-  name: string;
-}
 
-type IAddAnswerPayload = {
-  name: string;
-  questionId: number;
-  isTrue: boolean;
-}
-
-const initialState: IQuestion[] = [
+const initialState: Question[] = [
   {
     id: 0,
     name: 'Что такое делать так делать так делать так',
@@ -50,20 +41,20 @@ const initialState: IQuestion[] = [
 const questionSlice = createSlice({
   name: 'qiestion',
   initialState,
-  reducers:{
-    addNameQuestion(state, action: PayloadAction<IAddQuestionPayload>){
-      const {name} = action.payload;
-      
+  reducers: {
+    addNameQuestion(state, action: PayloadAction<AddNameQuestionPayload>) {
+      const { name } = action.payload;
+
       state.push({
         id: Date.now(),
         name,
         answers: []
       })
     },
-    addAnswer(state, action: PayloadAction<IAddAnswerPayload>) {
+    addAnswer(state, action: PayloadAction<AddAnswerPayload>) {
       const { name, isTrue, questionId } = action.payload;
 
-      state.forEach((question: IQuestion, index) => {
+      state.forEach((question: Question, index) => {
         if (question.id === questionId) {
           state[index].answers.push({
             id: Date.now(),
@@ -78,4 +69,4 @@ const questionSlice = createSlice({
 
 export type questionsState = ReturnType<typeof questionSlice.reducer>;
 export default questionSlice.reducer;
-export const {addNameQuestion, addAnswer} = questionSlice.actions;
+export const { addNameQuestion, addAnswer } = questionSlice.actions;

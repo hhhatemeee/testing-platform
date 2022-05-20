@@ -2,26 +2,22 @@ import { Upload } from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { addNameTest } from "../../redux/reducers/localTest";
 import { uploadTestInBase } from "../../redux/reducers/tests";
-import AddValue, { AddingElement } from "../../subComponents/AddValue";
-import { ITest } from "../../types";
-
-import styles from './style.module.scss';
+import { AddingElementProps, Test } from "../../shared/types";
+import AddValue from "../../subComponents/AddValue";
 import TestContainer from "./Test/container";
 
-interface IWindowMakeTest {
-  onClose: (boolean: boolean) => void;
-  test: ITest;
-}
+import styles from './style.module.scss';
 
-export interface IQuestion {
-  id: number;
-  name: string;
+type IWindowMakeTest = {
+  onClose: (boolean: boolean) => void;
+  test: Test;
 }
 
 const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, test }) => {
-  const [localTest, setLocalTest] = useState<ITest>();
+  const [localTest, setLocalTest] = useState<Test>();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,13 +26,13 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, test }) => {
     }
   }, [test]);
 
-  const handleAddTest = (value: AddingElement):void => {
+  const handleAddTest = (value: AddingElementProps):void => {
     dispatch(addNameTest({ ...value }));
   };
   
   const uploadTestHandler = ():void => {
     if(localTest){
-      dispatch(uploadTestInBase({id: localTest.id, test:localTest}));
+      dispatch(uploadTestInBase({isUploading: true, test:localTest}));
     }
   }
 

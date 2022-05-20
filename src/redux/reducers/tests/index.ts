@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IQuestion, ITest, ITestState } from "../../../types";
-import { IFetchTest } from "../../../types/response";
-import { IAddAnswerPayload, IAddQuestionPayload, IAddTestPayload, IUploadTestPayload } from "../../types";
+import { FetchTestPayload, FetchTestsReducerState, UploadTestPayload } from "../../../shared/types";
 
-const initialState: ITestState = {
-  lastTestIdUpload: null,
+const initialState: FetchTestsReducerState = {
+  isUploading: false,
   tests: [
     {
       id: 55,
@@ -31,60 +29,19 @@ const initialState: ITestState = {
   ],
 };
 
-const testsReducer = createSlice({
-  name: 'tests',
+const fetchTestsReducer = createSlice({
+  name: 'fetchTests',
   initialState,
   reducers: {
-    addTest(state, action: PayloadAction<IAddTestPayload>){
-      const {name} = action.payload;
-      
-      state.tests.push({
-        id:Date.now(),
-        questions: [],
-        name
-      });
+    setFetchTests(state, action:PayloadAction<FetchTestPayload>){
+      state.tests = action.payload.data;
     },
-    
-    addQuestion(state, action:PayloadAction<IAddQuestionPayload>){
-      const {name, testId} = action.payload;
-      
-      state.tests.forEach((test:ITest, index) => {
-        if(test.id === testId){
-          state.tests[index].questions.push({
-            id: Date.now(),
-            name,
-            answers:[],
-          })
-        }
-      })
-    },
-    addAnswer(state, action:PayloadAction<IAddAnswerPayload>){
-      const {name, testId, questionId} = action.payload;
-      
-      state.tests.forEach((test:ITest, iTest) => {
-        if(test.id === testId){
-          state.tests[iTest].questions.forEach((ques:IQuestion,iQues) => {
-            if(ques.id === questionId){
-              state.tests[iTest].questions[iQues].answers.push({
-                id: Date.now(),
-                name,
-                isTrue: false,
-              })
-            }
-          })
-        }
-      })
-    },
-    setFetchTests(state, action:PayloadAction<IFetchTest[]>){
-      state.tests = action.payload;
-    },
-    uploadTestInBase(state, action: PayloadAction<IUploadTestPayload>){
-      console.log(123);
-      state.lastTestIdUpload = action.payload.id;
+    uploadTestInBase(state, action: PayloadAction<UploadTestPayload>){
+      state.isUploading = action.payload.isUploading;
     }
   }
 })
 
-export type testsState = ReturnType<typeof testsReducer.reducer>;
-export default testsReducer.reducer;
-export const {addTest, addQuestion, addAnswer,setFetchTests,uploadTestInBase} = testsReducer.actions;
+export type testsState = ReturnType<typeof fetchTestsReducer.reducer>;
+export default fetchTestsReducer.reducer;
+export const {setFetchTests,uploadTestInBase} = fetchTestsReducer.actions;

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+
 import { IQuestion } from "../../../types";
 import Question from "./question";
 
 import styles from './style.module.scss';
 
-interface IQuestionListProps {
+type QuestionListProps = {
   questions: IQuestion[];
 }
 
-const QuestionList: React.FC<IQuestionListProps> = ({ questions }) => {
+const QuestionList: React.FC<QuestionListProps> = ({ questions }) => {
   
   return <ul className={styles.questions}>
     {

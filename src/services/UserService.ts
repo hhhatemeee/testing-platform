@@ -1,10 +1,10 @@
 import { AxiosResponse } from "axios";
 
 import api from "../api";
-import { IFetchUser } from "./types";
+import { FetchUser } from "../shared/types";
 
 export default class UserService{
-  static fetchUser():Promise<AxiosResponse<IFetchUser>>{
-    return api.get<IFetchUser>('/user/');
+  static fetchUser():Promise<AxiosResponse<FetchUser>>{
+    return api.get<FetchUser>('/user/');
   }
 }

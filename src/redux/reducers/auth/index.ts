@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ISetAuthPayload } from "../../types";
+import { SetAuthPayload } from "../../../shared/types";
 
 const initialState = {
   isAuth: false,
 }
 
-
 const authReducer = createSlice({
   name: 'auth',
   initialState,
   reducers:{
-    setAuth(state, action: PayloadAction<ISetAuthPayload>){
+    setAuth(state, action: PayloadAction<SetAuthPayload>){
       const {isAuth} = action.payload;
       
       state.isAuth = isAuth;
@@ -19,7 +18,5 @@ const authReducer = createSlice({
 })
 
 export default authReducer.reducer;
-
 export type authState = ReturnType<typeof authReducer.reducer>;
-
 export const {setAuth} = authReducer.actions; 
