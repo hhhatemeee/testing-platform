@@ -1,4 +1,4 @@
-import { forwardRef, useState, useImperativeHandle, ReactElement, JSXElementConstructor } from "react";
+import { forwardRef, useState, useImperativeHandle, ReactElement, JSXElementConstructor, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import { usePortal } from "../../hooks/usePortal";
@@ -20,6 +20,11 @@ export const PortalWindow = forwardRef<PortalHandleProps, PortalProps>((
   const [window, setWindow] = useState<JSX.Element>(modal);
   const { loaded, portalId } = usePortal();
 
+  
+  useEffect(() => {
+    setWindow(modal);
+  },[modal.props.windowName])
+  
   useImperativeHandle(ref, () => ({
     addWindow(window: JSX.Element) {
       setWindow(window);

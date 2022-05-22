@@ -8,6 +8,7 @@ export type Answer = {
 } & SharedEntity;
 
 export type Question = {
+  topic: string;
   answers: Answer[];
 } & SharedEntity;
 
@@ -18,3 +19,5 @@ export type Test = {
 export type AddingElementProps = {
   name: string;
 }
+
+export type WindowSwitchName = 'test' | 'question';

@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AddAnswerPayload, AddNameQuestionPayload, Question } from "../../../shared/types";
+import { AddAnswerPayload, AddNameQuestionPayload, AddQuestionPayload, Question } from "../../../shared/types";
 
 
 const initialState: Question[] = [
   {
     id: 0,
+    topic: '',
     name: 'Что такое делать так делать так делать так',
     answers: [
       {
@@ -16,6 +17,7 @@ const initialState: Question[] = [
   },
   {
     id: 1,
+    topic: '',
     name: 'Ghbdtn Ghbdtn Ghbdtn Ghbdtn Ghbdtn Ghbdtn Ghbdtn Ghbdtn',
     answers: [
       {
@@ -27,6 +29,7 @@ const initialState: Question[] = [
   },
   {
     id: 2,
+    topic: '',
     name: 'iconOpen	.MuiSelect-iconOpen	Styles applied to the icon component if the popup is open.',
     answers: [
       {
@@ -42,11 +45,17 @@ const questionSlice = createSlice({
   name: 'qiestion',
   initialState,
   reducers: {
+    addQuestion(state, action: PayloadAction<AddQuestionPayload>){
+      const {question} = action.payload;
+      
+      state.push(question);
+    },
     addNameQuestion(state, action: PayloadAction<AddNameQuestionPayload>) {
       const { name } = action.payload;
 
       state.push({
         id: Date.now(),
+        topic: '',
         name,
         answers: []
       })
@@ -67,6 +76,7 @@ const questionSlice = createSlice({
   }
 });
 
+
 export type questionsState = ReturnType<typeof questionSlice.reducer>;
 export default questionSlice.reducer;
-export const { addNameQuestion, addAnswer } = questionSlice.actions;
+export const { addNameQuestion, addAnswer,addQuestion } = questionSlice.actions;

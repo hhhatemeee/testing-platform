@@ -1,0 +1,38 @@
+.answer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  
+  margin: 4px 0;
+  padding: 4px 8px;
+  
+  list-style-type: none;
+  
+  label{
+    font-size: 18px;
+    
+    cursor: pointer;
+    
+    &:hover{
+      color: rgba(#000000, .6);
+    }
+    
+    &:active{
+      color: rgba(#000000, .4);
+    }
+  }
+  
+  input{
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.container{
+  display: flex;
+  align-items: center;
+}

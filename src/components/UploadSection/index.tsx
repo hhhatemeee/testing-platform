@@ -6,12 +6,14 @@ import styles from './style.module.scss';
 
 type UploadSectionProps = {
   onClick: () => void;
+  title:string;
+  textBtn: string;
 }
 
-const UploadSection: React.FC<UploadSectionProps> = ({ onClick }) => {
+const UploadSection: React.FC<UploadSectionProps> = ({ onClick,textBtn,title }) => {
   return <section className={styles.container}>
-    <h4>Создать тест</h4>
-    <Button onClick={onClick} text="Создать" />
+    <h4>{title}</h4>
+    <Button onClick={onClick} text={textBtn} />
   </section>;
 };
 

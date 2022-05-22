@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Select, MenuItem, SelectChangeEvent, IconButton } from "@mui/material";
+import { SelectChangeEvent, IconButton } from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
 
-import { addQuestion } from "../../../redux/reducers/localTest";
+import { addQuestionInLocal } from "../../../redux/reducers/localTest";
 import QuestionList from "../QuestionList";
+import { Question } from "../../../shared/types";
+import CustomSelect from "../../../subComponents/Select";
 
 import styles from './style.module.scss';
-import { Question } from "../../../shared/types";
 
 
 export type TestProps = {
@@ -17,20 +18,9 @@ export type TestProps = {
   questionsAll?: Question[],
 }
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const Test: React.FC<TestProps> = ({ name, id, questionsTest, questionsAll }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentValue, setCurrentValue] = useState<number | 'question'>('question');
+  const [currentValue, setCurrentValue] = useState< number | 'Добавить вопрос'>('Добавить вопрос');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,36 +36,22 @@ const Test: React.FC<TestProps> = ({ name, id, questionsTest, questionsAll }) =>
   const addQuestionHandler = () => {
     const question = questions.filter((q: Question) => q.id === currentValue)[0];
     
-    dispatch(addQuestion({ question }));
-    setCurrentValue('question');
+    dispatch(addQuestionInLocal({ question }));
+    setCurrentValue('Добавить вопрос');
   }
 
   return <section className={styles.container}>
     <h4 className={styles.name}>{name}</h4>
     {questions
       && <section className={styles['add-question']}>
-        <Select
-          onChange={selectChangeHandler}
-          labelId="label-select"
-          value={currentValue}
-          autoWidth={false}
-          size="medium"
-          sx={{ width: '530px', minWidth: '530px' }}
-          MenuProps={MenuProps}
-        >
-          <MenuItem value="question" disabled>
-            Добавить вопрос
-          </MenuItem>
-          {questions.map((q: Question) => (
-            <MenuItem
-              key={q.id}
-              value={q.id}
-            >
-              {q.name}
-            </MenuItem>
-          )
-          )}
-        </Select>
+        <CustomSelect 
+        onChange={selectChangeHandler}
+        value={currentValue}
+        autoWidth={false}
+        sx={{ width: '530px', minWidth: '530px' }}
+        title={"Добавить вопрос"}
+        data={questions}
+        />
         <IconButton sx={{ color: '#6f52ee' }} onClick={addQuestionHandler}>
           <AddCircle sx={{ fontSize: '40px' }} />
         </IconButton>

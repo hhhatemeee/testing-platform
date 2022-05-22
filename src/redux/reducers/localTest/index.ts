@@ -7,6 +7,7 @@ const initialState:Test = {
   questions: [
     {
       id:1,
+      topic: '',
       name: 'Первый вопрос',
       answers:[
         {
@@ -23,12 +24,12 @@ const localTestSlice = createSlice({
   name: 'localTest',
   initialState,
   reducers:{
-    addNameTest(state, action: PayloadAction<AddTestPayload>){
+    addNameTestInLocal(state, action: PayloadAction<AddTestPayload>){
       const {name} = action.payload;
       
       state.name = name;
     },
-    addQuestion(state, action: PayloadAction<AddQuestionPayload>){
+    addQuestionInLocal(state, action: PayloadAction<AddQuestionPayload>){
       const {question} = action.payload;
       
       state.questions.push(question);
@@ -38,4 +39,4 @@ const localTestSlice = createSlice({
 
 export type localTestState = ReturnType<typeof localTestSlice.reducer>;
 export default localTestSlice.reducer;
-export const {addNameTest, addQuestion} = localTestSlice.actions;
+export const {addNameTestInLocal, addQuestionInLocal} = localTestSlice.actions;

@@ -44,4 +44,3 @@ export type FetchTestsReducerState = {
   isUploading: boolean;
   tests: Test[];
 };
-

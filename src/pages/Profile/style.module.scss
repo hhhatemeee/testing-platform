@@ -10,14 +10,15 @@
   width: 100%;
   height: 75px;
   margin-left: 10px;
-  background-color: #ffa901;
+  background-color: #e29906;
   border-radius: 12px;
   padding: 10px;
 }
 
 .upload {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  gap: 10px;
 }
 
 .circle {

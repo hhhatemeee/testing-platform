@@ -3,13 +3,14 @@ import {IconButton} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addNameTest } from "../../redux/reducers/localTest";
+import { addNameTestInLocal } from "../../redux/reducers/localTest";
 import { uploadTestInBase } from "../../redux/reducers/tests";
 import { AddingElementProps, Test } from "../../shared/types";
 import AddValue from "../../subComponents/AddValue";
 import TestContainer from "./Test/container";
 
 import styles from './style.module.scss';
+import WindowHeader from "../../subComponents/WindowHeader";
 
 type IWindowMakeTest = {
   onClose: (boolean: boolean) => void;
@@ -27,7 +28,7 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, test }) => {
   }, [test]);
 
   const handleAddTest = (value: AddingElementProps):void => {
-    dispatch(addNameTest({ ...value }));
+    dispatch(addNameTestInLocal({ ...value }));
   };
   
   const uploadTestHandler = ():void => {
@@ -38,10 +39,10 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, test }) => {
 
   return <div className={styles.container}>
     <main className={styles.window}>
-      <section className={styles.header}>
-        <h2 className={styles.title}>Создание теста</h2>
-        <h3 className={styles.close} onClick={() => onClose(false)}>+</h3>
-      </section>
+      <WindowHeader 
+      title="Создание теста"
+      onClose={onClose}
+      />
       <AddValue placeholder={"Введите название для теста"} handleAdd={handleAddTest} heightInput={""} >
         <IconButton sx={{marginLeft:'5px'}} onClick={uploadTestHandler}>
           <Upload className={styles.upload} />

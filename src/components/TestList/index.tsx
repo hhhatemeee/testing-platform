@@ -17,7 +17,6 @@ const TestList: React.FC<TestListProps> = ({ tests, className }) => {
       key={test.id}
       id={test.id}
       name={test.name}
-      questions={test.questions}
     />)}
   </section>
 };

@@ -10,6 +10,7 @@ const initialState: FetchTestsReducerState = {
       questions: [
         {
           id: 1,
+          topic: '',
           name: 'question',
           answers: [
             {

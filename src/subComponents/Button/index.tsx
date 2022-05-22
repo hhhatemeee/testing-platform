@@ -1,17 +1,19 @@
 import React from "react";
+import cn from 'classnames';
 
 import styles from './styles.module.scss';
 
 type ButtonProps = {
-  onClick: () => void;
   text: string;
+  onClick?: () => void;
+  className?:string;
   width?: string;
   isAnimate?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, text, width, isAnimate }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, text, width, isAnimate,className }) => {
   return <button
-    className={`${styles.button} ${isAnimate ? styles.animate : ''}`}
+    className={cn(styles.button, {[styles.animate]: isAnimate, className})}
     onClick={onClick}
     style={{ width: width }}>
     {text}

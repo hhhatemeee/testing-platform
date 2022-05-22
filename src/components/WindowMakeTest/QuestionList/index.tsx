@@ -1,19 +1,19 @@
 import React from "react";
 
-import { IQuestion } from "../../../types";
-import Question from "./question";
+import { Question } from "../../../shared/types";
+import QuestionItem from "./questionItem";
 
 import styles from './style.module.scss';
 
 type QuestionListProps = {
-  questions: IQuestion[];
+  questions: Question[];
 }
 
 const QuestionList: React.FC<QuestionListProps> = ({ questions }) => {
   
   return <ul className={styles.questions}>
     {
-      questions.map((q: IQuestion) => <Question key={q.id} name={q.name} id={q.id}/>)
+      questions.map((q: Question) => <QuestionItem key={q.id} name={q.name} id={q.id}/>)
     }
   </ul>;
 };
