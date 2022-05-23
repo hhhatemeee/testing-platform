@@ -11,6 +11,8 @@
   
   list-style-type: none;
   
+  animation: appearance .2s ;
+  
   label{
     font-size: 18px;
     
@@ -35,4 +37,10 @@
 .container{
   display: flex;
   align-items: center;
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
 }

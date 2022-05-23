@@ -5,18 +5,7 @@ const initialState:Test = {
   id: 1,
   name: 'Новый тест',
   questions: [
-    {
-      id:1,
-      topic: '',
-      name: 'Первый вопрос',
-      answers:[
-        {
-          id:1,
-          name: '',
-          isTrue: false,
-        }
-      ]
-    }
+
   ]
 };
 

@@ -95,20 +95,25 @@ const WindowMakeQuestion: React.FC<WindowMakeQuestionProps> = ({ onClose }) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(addQuestion({
-      question: {
-        id: Date.now(),
-        name: currentName,
-        topic: currentTopic,
-        answers
-      }
-    }));
+    if (currentName && answers.length) {
+      dispatch(addQuestion({
+        question: {
+          id: Date.now(),
+          name: currentName,
+          topic: currentTopic,
+          answers
+        }
+      }));
 
-    setAnswers([]);
-    setCurrentAnswer('');
-    setCurrentTopic('');
-    setCurrentName('');
-    setSelectValue('Выберите тему');
+      setAnswers([]);
+      setCurrentAnswer('');
+      setCurrentTopic('');
+      setCurrentName('');
+      setSelectValue('Выберите тему');
+      
+      return;
+    }
+    console.warn('Пустые поля');
   }
 
   return <div className={styles.container}>
@@ -127,7 +132,7 @@ const WindowMakeQuestion: React.FC<WindowMakeQuestionProps> = ({ onClose }) => {
                   htmlFor="question"
                   className={styles['topic__select']}
                   onClick={() => setIsShowTopics(!isShowTopics)}
-                >Выбрать из существующих</label>
+                >{isShowTopics ? "Использовать свою" : "Выбрать из существуюших"}</label>
               </span>
               {
                 isShowTopics
@@ -136,7 +141,7 @@ const WindowMakeQuestion: React.FC<WindowMakeQuestionProps> = ({ onClose }) => {
                     value={selectValue}
                     data={MOCK_TOPICS}
                     title={"Выберите тему"}
-                    sx={{ width: '570px', minWidth: '570px', height: '50px', marginTop: '5px' }}
+                    sx={{ width: '562px', minWidth: '562px', height: '50px', marginTop: '5px' }}
                   />
                   : <Input
                     placeholder={"Введите название темы"}

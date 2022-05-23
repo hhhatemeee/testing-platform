@@ -2,7 +2,7 @@
   // background-color: rgb(214, 214, 214);
   border-radius: 4px;
   padding: 10px;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
 }
 
 .header {
@@ -46,6 +46,18 @@
 .add-question {
   display: flex;
   align-items: center;
+}
+
+.add-presonal-question{
+  font-size: 14px;
+  margin-left: 5px;
+  color:rgb(61, 108, 238);
+  cursor: pointer;
+  
+  &:hover{
+    color: rgb(42, 82, 192);
+    text-decoration: underline;
+  }
 }
 
 @keyframes appearance {

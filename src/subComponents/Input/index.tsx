@@ -10,9 +10,13 @@ type InputProps = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   id?: string;
   type?: string;
+  label?: string;
+  style?:any
 }
-const Input: React.FC<InputProps> = ({ placeholder, onChange, value, height, onKeyDown,id,type }) => {
-  return <input
+const Input: React.FC<InputProps> = ({ placeholder, onChange, value, height, onKeyDown,id,type,label,style }) => {
+  return <div className={styles.container} style={style}>
+    {label && <label htmlFor={id}>{label}</label>}
+    <input
     className={styles.input}
     type={type ?? "text"}
     placeholder={placeholder}
@@ -22,6 +26,8 @@ const Input: React.FC<InputProps> = ({ placeholder, onChange, value, height, onK
     onKeyDown={onKeyDown}
     id={id ?? ""}
   />
+  </div>
+
 };
 
 export default Input;

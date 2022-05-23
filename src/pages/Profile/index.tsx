@@ -4,8 +4,7 @@ import withAuth from "../../hoc/withAuth";
 import Container from "../../subComponents/Container";
 import { PortalWindow } from "../../components/PortalWindow";
 import TestList from "../../components/TestList";
-import UploadSection from "../../components/UploadSection";
-import WindowMakeTestContainer from "../../components/WindowMakeTest/container";
+import CreateSection from "../../components/CreateSection";
 import { Test, UserReducerState, WindowSwitchName } from "../../shared/types";
 import WindowSwitch from "../../components/WIndowSwitch";
 
@@ -45,8 +44,8 @@ const Profile: React.FC<ProfileProps> = ({
       <h2 className={styles.username}>{firstName} {lastName}</h2>
     </section>
     <section className={styles.upload}>
-      <UploadSection onClick={() => handleOpen(true, 'test')} title="Создать тест" textBtn="Создать"/>
-      <UploadSection onClick={() => handleOpen(true, 'question')} title="Создать вопрос" textBtn="Создать"/>
+      <CreateSection onClick={() => handleOpen(true, 'test')} title="Создать тест" textBtn="Создать"/>
+      <CreateSection onClick={() => handleOpen(true, 'question')} title="Создать вопрос" textBtn="Создать"/>
     </section>
     <span className={styles.row}>
       <h4 className={styles['title-list']}>Список тестов:</h4>

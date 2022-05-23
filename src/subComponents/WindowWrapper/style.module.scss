@@ -22,37 +22,6 @@
 
 }
 
-.title {
-  text-align: center;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.close {
-  transform: rotate(45deg);
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-  transition: .1s ease;
-
-  &:hover {
-    color: rgba(#000000, .8)
-  }
-
-  &:active {
-    color: rgba(#000000, .5)
-  }
-}
-
-.upload{
-  color:#6f52ee;
-}
-
-
-
 @keyframes appearance {
   0% {
     transform: scale(0);

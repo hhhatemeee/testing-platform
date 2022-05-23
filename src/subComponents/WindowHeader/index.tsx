@@ -9,7 +9,7 @@ type WindowHeaderProps = {
 
 const WindowHeader: React.FC<WindowHeaderProps> = ({ title, onClose }) => {
   return <header className={styles.header}>
-    <h2 className={styles.title}>Создание вопросов</h2>
+    <h2 className={styles.title}>{title}</h2>
     <span className={styles.close} onClick={() => onClose(false)}>+</span>
   </header>;
 };

@@ -9,6 +9,7 @@ import { Question } from "../../../shared/types";
 import CustomSelect from "../../../subComponents/Select";
 
 import styles from './style.module.scss';
+import Input from "../../../subComponents/Input";
 
 
 export type TestProps = {
@@ -58,8 +59,9 @@ const Test: React.FC<TestProps> = ({ name, id, questionsTest, questionsAll }) =>
       </section>
     }
     {
-      questionsTest?.length && <QuestionList questions={questionsTest} />
+      questionsTest?.length ? <QuestionList questions={questionsTest} /> : null
     }
+    <span className={styles['add-presonal-question']}>Добавить свой вопрос</span>
   </section>;
 };
 

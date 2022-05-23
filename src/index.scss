@@ -5,8 +5,10 @@
 body {
   margin: 0;
   background-color: #f9f9f9;
+  overflow-y: auto;
+  padding: 0 !important;
 
-  *::-webkit-scrollbar {
+  &::-webkit-scrollbar,*::-webkit-scrollbar {
     display: inherit;
     width: 8px;
     background-color: #fff;
@@ -14,7 +16,7 @@ body {
 
   }
 
-  *::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb,*::-webkit-scrollbar-thumb {
     border-radius: 12px;
     background-color: rgba(rgba(83, 83, 83, 0.2), .2);
   }

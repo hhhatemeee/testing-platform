@@ -11,6 +11,7 @@ import TestContainer from "./Test/container";
 
 import styles from './style.module.scss';
 import WindowHeader from "../../subComponents/WindowHeader";
+import WindowWrapper from "../../subComponents/WindowWrapper";
 
 type IWindowMakeTest = {
   onClose: (boolean: boolean) => void;
@@ -37,20 +38,16 @@ const WindowMakeTest: React.FC<IWindowMakeTest> = ({ onClose, test }) => {
     }
   }
 
-  return <div className={styles.container}>
-    <main className={styles.window}>
-      <WindowHeader 
-      title="Создание теста"
-      onClose={onClose}
-      />
+  return <WindowWrapper onClose={onClose} title="Создание теста">
+      <>
       <AddValue placeholder={"Введите название для теста"} handleAdd={handleAddTest} heightInput={""} >
         <IconButton sx={{marginLeft:'5px'}} onClick={uploadTestHandler}>
           <Upload className={styles.upload} />
         </IconButton>
         </AddValue>
       {localTest && <TestContainer id={localTest.id} name={localTest.name} questionsTest={localTest.questions} />}
-    </main>
-  </div>;
+      </>
+  </WindowWrapper>;
 };
 
 export default WindowMakeTest;
